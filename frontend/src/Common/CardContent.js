@@ -12,14 +12,14 @@ const useStyles = (theme) => ({
     maxWidth: 300,
     minWidth: 300,
     margin:10,
-    maxHeight:500
+    height:500
   },
   media: {
-   height:400,
+    height:400,
    // paddingTop: '56.25%', // 16:9
   },
   content:{
-    height:100
+    // height:100
   }
 });
 
