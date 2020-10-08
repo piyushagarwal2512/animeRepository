@@ -1,7 +1,8 @@
 import actionTypes, { deleteFromContent } from "./actions"
 
 let initialState={
-       searchData:[]
+       searchData:[],
+       lastPage:1
 }
 
  const reducer=(state=initialState,action)=>{
@@ -9,10 +10,20 @@ let initialState={
 
     switch(action.type)
     {
-        case actionTypes.FETCH_DATA:         
+        case actionTypes.FETCH_DATA:   
+        let data=[];let page=state.lastPage;
+         if(action.payload && !action.payload.results){
+             data=[...state.searchData]
+         }
+         else if(action.payload && action.payload.results)
+         {
+             data=[...state.searchData,...action.payload.results]
+             page=action.payload.last_page;
+         }
         return {
             ...state,
-           searchData:action.payload && action.payload.results?[...state.searchData,...action.payload.results]:[]
+           searchData:data,
+           lastPage:page
         }      
         default:
             return state
