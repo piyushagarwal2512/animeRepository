@@ -8,15 +8,16 @@ import{domain} from "../../apis"
 }
 
 //get data
-export function getData(searchData,page)
+export function getData(searchData,page,limit)
 {
 
 return (dispatch)=>{
 
-        axios.get(`${domain}?q=${searchData}&limit=16&page=${page}`).then((data)=>{
+        axios.get(`${domain}?q=${searchData}&limit=${limit}&page=${page}`).then((data)=>{
 
         dispatch({type:actionTypes.FETCH_DATA,payload:data.data})
         }).catch((e)=>{
+            alert("No Data Found")
             dispatch({type:actionTypes.FETCH_DATA,payload:e})
         })
 }
